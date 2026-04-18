@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuestas de Identidad de Marca · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0D0D;--paper:#FAF8F5;--gold:#B8963E;--rule:rgba(13,13,13,0.12);
+  --font-head:'Cormorant Garamond',serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* ── HEADER ── */
+.masthead{background:var(--ink);padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
+.masthead::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.masthead-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.35);font-family:var(--font-body);font-weight:300;margin-bottom:1.25rem}
+.masthead-title{font-family:var(--font-head);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:300;color:#FAF8F5;line-height:1.15;letter-spacing:-.5px;margin-bottom:.75rem}
+.masthead-title strong{font-weight:700}
+.masthead-sub{font-size:13px;color:rgba(255,255,255,0.45);font-family:var(--font-body);font-weight:300;letter-spacing:.5px;max-width:520px;margin:0 auto 2rem;line-height:1.8}
+.masthead-divider{display:flex;align-items:center;gap:12px;width:160px;margin:0 auto}
+.masthead-divider::before,.masthead-divider::after{content:'';flex:1;height:1px;background:rgba(184,150,62,0.4)}
+.masthead-dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+/* ── INSTRUCCIONES ── */
+.intro{padding:2.5rem 1.5rem 1.5rem;max-width:680px;margin:0 auto;text-align:center}
+.intro-title{font-family:var(--font-head);font-size:1.5rem;font-weight:600;margin-bottom:.75rem;color:var(--ink)}
+.intro-desc{font-size:14px;color:rgba(13,13,13,0.55);line-height:1.85;font-family:var(--font-body);font-weight:300;margin-bottom:1.5rem}
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;max-width:380px;margin:0 auto}
+.intro-step{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(13,13,13,0.5);font-family:var(--font-body);font-weight:300;letter-spacing:.5px}
+.step-num{width:20px;height:20px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold);flex-shrink:0}
+
+/* ── GRID 2x2 ── */
+.companies{padding:2rem 1.5rem 4rem;max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.companies{grid-template-columns:1fr;gap:1rem}}
+
+/* ── TARJETA ── */
+.company-card{border:1px solid var(--rule);padding:2rem 1.75rem;position:relative;display:flex;flex-direction:column;gap:0;background:var(--paper)}
+.company-card:hover{background:rgba(184,150,62,0.02)}
+.card-number{font-size:10px;letter-spacing:4px;text-transform:uppercase;font-family:var(--font-body);font-weight:400;margin-bottom:.6rem}
+.card-category{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(13,13,13,0.32);font-family:var(--font-body);font-weight:300;margin-bottom:.4rem}
+.card-name{font-family:var(--font-head);font-size:1.85rem;font-weight:700;margin-bottom:.2rem;line-height:1;color:var(--ink)}
+.card-tagline{font-size:12px;color:rgba(13,13,13,0.42);font-family:var(--font-head);font-style:italic;font-weight:400;margin-bottom:1.1rem}
+.card-rule{height:1px;background:var(--rule);margin-bottom:1.1rem}
+.card-desc{font-size:13px;line-height:1.85;color:rgba(13,13,13,0.62);font-family:var(--font-body);font-weight:300;margin-bottom:1.25rem;text-align:justify;flex:1}
+
+/* NOMBRES */
+.names-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(13,13,13,0.32);font-family:var(--font-body);font-weight:400;margin-bottom:.5rem}
+.names-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.1rem}
+.name-pill{font-size:11px;padding:4px 12px;border:1px solid rgba(13,13,13,0.13);color:var(--ink);font-family:var(--font-body);font-weight:400;border-radius:2px}
+
+/* PALETA */
+.palette-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(13,13,13,0.32);font-family:var(--font-body);font-weight:400;margin-bottom:.5rem}
+.palette-swatches{display:flex;gap:5px;margin-bottom:1.25rem}
+.swatch{width:24px;height:24px;border-radius:3px;border:1px solid rgba(0,0,0,0.07)}
+
+/* ── CUADRO QR + BOTÓN ── */
+.qr-block{border-radius:4px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.qr-unit{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0}
+.qr-box{width:68px;height:68px;background:#fff;padding:3px;border-radius:3px;display:flex;align-items:center;justify-content:center}
+.qr-box canvas,.qr-box img{width:62px!important;height:62px!important}
+.qr-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:var(--font-body);font-weight:300}
+.qr-sep{width:1px;height:60px;background:rgba(255,255,255,0.12);flex-shrink:0}
+.btn-click{display:flex;align-items:center;justify-content:center;flex:1;padding:12px 10px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:3px;text-align:center;transition:.2s;border:1px solid rgba(255,255,255,0.15)}
+
+/* COLORES POR EMPRESA */
+.card-1 .card-number{color:#8FAF6A}
+.card-1 .card-name{color:#1A2117}
+.card-1 .name-pill{border-color:rgba(45,80,22,0.2);color:#2D5016}
+.card-1 .qr-block{background:#1A2117}
+.card-1 .btn-click{background:#8FAF6A;color:#1A2117}
+.card-1 .btn-click:hover{background:#a8c882}
+
+.card-2 .card-number{color:#4A90C4}
+.card-2 .card-name{color:#0B1F3A}
+.card-2 .name-pill{border-color:rgba(11,31,58,0.2);color:#2A5C8A}
+.card-2 .qr-block{background:#0B1F3A}
+.card-2 .btn-click{background:#4A90C4;color:#fff}
+.card-2 .btn-click:hover{background:#5da5d8}
+
+.card-3 .card-number{color:#F97316}
+.card-3 .card-name{color:#111827}
+.card-3 .name-pill{border-color:rgba(17,24,39,0.18);color:#1B4FD8}
+.card-3 .qr-block{background:#111827}
+.card-3 .btn-click{background:#F97316;color:#fff}
+.card-3 .btn-click:hover{background:#fb8c35}
+
+.card-4 .card-number{color:#0D9488}
+.card-4 .card-name{color:#0A0F0F}
+.card-4 .name-pill{border-color:rgba(10,15,15,0.18);color:#0D9488}
+.card-4 .qr-block{background:#0A0F0F}
+.card-4 .btn-click{background:#0D9488;color:#fff}
+.card-4 .btn-click:hover{background:#0fb8a8}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(184,150,62,0.2)}
+.footer-note{font-size:11px;color:rgba(255,255,255,0.25);font-family:var(--font-body);font-weight:300;letter-spacing:1px}
+.footer-year{color:var(--gold)}
+
+@media print{
+  body{background:#fff}
+  .masthead,.qr-block{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .company-card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="masthead">
+  <div class="masthead-label">Propuesta Estratégica de Marca · 2026</div>
+  <h1 class="masthead-title">Cuatro empresas.<br><strong>Cuatro identidades.</strong></h1>
+  <p class="masthead-sub">Hemos desarrollado cuatro propuestas de nombre e identidad visual para cada línea de negocio. Escanee el código QR o haga clic en el botón de cada empresa para explorar los nombres, los logos, la colorimetría y votar por su propuesta favorita.</p>
+  <div class="masthead-divider"><div class="masthead-dot"></div></div>
+</div>
+
+<!-- INSTRUCCIONES -->
+<div class="intro">
+  <p class="intro-title">¿Cómo funciona?</p>
+  <p class="intro-desc">Cada tarjeta presenta el contexto de una línea de negocio con sus cuatro propuestas de nombre. Escanee el QR con su celular o haga clic en el botón si está en computador. Explore los logos, la paleta completa y vote por su favorita.</p>
+  <div class="steps-grid">
+    <span class="intro-step"><span class="step-num">1</span>Escanee el QR o haga clic</span>
+    <span class="intro-step"><span class="step-num">2</span>Explore los nombres</span>
+    <span class="intro-step"><span class="step-num">3</span>Vote por su favorito</span>
+    <span class="intro-step"><span class="step-num">4</span>Vea los resultados</span>
+  </div>
+</div>
+
+<!-- GRID 2x2 -->
+<div class="companies">
+
+  <!-- 01: COWORKING -->
+  <div class="company-card card-1">
+    <div class="card-number">Empresa 01</div>
+    <div class="card-category">Espacios de Trabajo</div>
+    <div class="card-name">Coworking</div>
+    <div class="card-tagline">Oficinas premium para ejecutivos internacionales</div>
+    <div class="card-rule"></div>
+    <p class="card-desc">Espacios de trabajo disponibles para alquiler dirigidos a ejecutivos extranjeros y empresas que necesitan operar en Colombia con estándares internacionales. Modelo flexible que convierte metros cuadrados disponibles en una fuente de utilidades.</p>
+    <div class="names-label">Propuestas de nombre</div>
+    <div class="names-grid">
+      <span class="name-pill">Officium</span>
+      <span class="name-pill">Nexo Offices</span>
+      <span class="name-pill">District Work</span>
+      <span class="name-pill">Suite Co.</span>
+    </div>
+    <div class="palette-label">Dirección de color</div>
+    <div class="palette-swatches">
+      <div class="swatch" style="background:#1A2117"></div>
+      <div class="swatch" style="background:#8FAF6A"></div>
+      <div class="swatch" style="background:#F4EFE6"></div>
+      <div class="swatch" style="background:#B8963E"></div>
+    </div>
+    <div class="qr-block">
+      <div class="qr-unit">
+        <div class="qr-box" id="qr1"></div>
+        <div class="qr-label">Escanear</div>
+      </div>
+      <div class="qr-sep"></div>
+      <a href="https://coworkingaprobacion01.netlify.app/" target="_blank" class="btn-click">Clic para ver →</a>
+    </div>
+  </div>
+
+  <!-- 02: AFIANZADORA -->
+  <div class="company-card card-2">
+    <div class="card-number">Empresa 02</div>
+    <div class="card-category">Fianzas y Seguros</div>
+    <div class="card-name">Afianzadora</div>
+    <div class="card-tagline">Garantías jurídicas con autoridad y agilidad</div>
+    <div class="card-rule"></div>
+    <p class="card-desc">Empresa de fianzas, seguros y avales corporativos que respalda contratos y obligaciones ante terceros. Combina el rigor jurídico con la agilidad moderna para atender tanto el mercado empresarial colombiano como el internacional.</p>
+    <div class="names-label">Propuestas de nombre</div>
+    <div class="names-grid">
+      <span class="name-pill">Aval Corp</span>
+      <span class="name-pill">Fiducia</span>
+      <span class="name-pill">NexBond</span>
+      <span class="name-pill">Garante</span>
+    </div>
+    <div class="palette-label">Dirección de color</div>
+    <div class="palette-swatches">
+      <div class="swatch" style="background:#0B1F3A"></div>
+      <div class="swatch" style="background:#4A90C4"></div>
+      <div class="swatch" style="background:#F7F9FC"></div>
+      <div class="swatch" style="background:#C8A84B"></div>
+    </div>
+    <div class="qr-block">
+      <div class="qr-unit">
+        <div class="qr-box" id="qr2"></div>
+        <div class="qr-label">Escanear</div>
+      </div>
+      <div class="qr-sep"></div>
+      <a href="https://afianzadoraprovacion01.netlify.app/" target="_blank" class="btn-click">Clic para ver →</a>
+    </div>
+  </div>
+
+  <!-- 03: CONVENIOS -->
+  <div class="company-card card-3">
+    <div class="card-number">Empresa 03</div>
+    <div class="card-category">Beneficios Corporativos</div>
+    <div class="card-name">Convenios</div>
+    <div class="card-tagline">Plataforma de alianzas y descuentos para empresas</div>
+    <div class="card-rule"></div>
+    <p class="card-desc">Plataforma integral de convenios y beneficios que conecta empresas, empleados y aliados comerciales. Ofrece descuentos, acuerdos B2B, beneficios para colaboradores y una red de convenios digitales bajo una sola marca.</p>
+    <div class="names-label">Propuestas de nombre</div>
+    <div class="names-grid">
+      <span class="name-pill">LinkBene</span>
+      <span class="name-pill">Convalia</span>
+      <span class="name-pill">Benexo</span>
+      <span class="name-pill">AliaPlus</span>
+    </div>
+    <div class="palette-label">Dirección de color</div>
+    <div class="palette-swatches">
+      <div class="swatch" style="background:#111827"></div>
+      <div class="swatch" style="background:#1B4FD8"></div>
+      <div class="swatch" style="background:#F97316"></div>
+      <div class="swatch" style="background:#F9FAFB"></div>
+    </div>
+    <div class="qr-block">
+      <div class="qr-unit">
+        <div class="qr-box" id="qr3"></div>
+        <div class="qr-label">Escanear</div>
+      </div>
+      <div class="qr-sep"></div>
+      <a href="https://conveniospropuesta01.netlify.app/" target="_blank" class="btn-click">Clic para ver →</a>
+    </div>
+  </div>
+
+  <!-- 04: PRÉSTAMOS -->
+  <div class="company-card card-4">
+    <div class="card-number">Empresa 04</div>
+    <div class="card-category">Préstamos y Financiamiento</div>
+    <div class="card-name">Préstamos</div>
+    <div class="card-tagline">Crédito ágil para asociados y público general</div>
+    <div class="card-rule"></div>
+    <p class="card-desc">Empresa de financiamiento integral que ofrece préstamos personales y empresariales, capital de trabajo, facilidades de pago y refinanciación. Atiende a asociados con condiciones preferenciales y también al público general con agilidad y confianza.</p>
+    <div class="names-label">Propuestas de nombre</div>
+    <div class="names-grid">
+      <span class="name-pill">Kapital</span>
+      <span class="name-pill">Fluxa</span>
+      <span class="name-pill">Credex</span>
+      <span class="name-pill">Novum</span>
+    </div>
+    <div class="palette-label">Dirección de color</div>
+    <div class="palette-swatches">
+      <div class="swatch" style="background:#0A0F0F"></div>
+      <div class="swatch" style="background:#0D9488"></div>
+      <div class="swatch" style="background:#2DD4BF"></div>
+      <div class="swatch" style="background:#F8FFFE"></div>
+    </div>
+    <div class="qr-block">
+      <div class="qr-unit">
+        <div class="qr-box" id="qr4"></div>
+        <div class="qr-label">Escanear</div>
+      </div>
+      <div class="qr-sep"></div>
+      <a href="https://prestamospropuesta01.netlify.app/" target="_blank" class="btn-click">Clic para ver →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p class="footer-note">Propuesta de Identidad de Marca · <span class="footer-year">2026</span> · Confidencial</p>
+</div>
+
+<script>
+// 1. Definimos las rutas a tus archivos locales .html
+const urls = {
+  1: 'brochure-coworking25.html',
+  2: 'brochure-afianzadora26.html',
+  3: 'brochure-convenios27.html',
+  4: 'brochure-prestamos28.html'
+};
+
+// 2. Función para generar los QR (ahora apuntarán a tus páginas internas)
+function makeQR(id, fileName) {
+  const el = document.getElementById('qr' + id);
+  if (!el) return;
+  el.innerHTML = '';
+  
+  // Obtenemos la base de la URL actual para que el QR funcione en el celular
+  const fullUrl = window.location.origin + '/' + fileName;
+
+  try {
+    new QRCode(el, {
+      text: fullUrl, 
+      width: 62, 
+      height: 62, 
+      colorDark: '#0D0D0D', 
+      colorLight: '#FFFFFF', 
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch (e) {
+    el.innerHTML = '<div style="width:62px;height:62px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:8px;color:#999;text-align:center">QR</div>';
+  }
+}
+
+// 3. Ejecutar al cargar
+window.addEventListener('load', () => {
+  makeQR(1, urls[1]);
+  makeQR(2, urls[2]);
+  makeQR(3, urls[3]);
+  makeQR(4, urls[4]);
+  
+  // EXTRA: Actualizar los enlaces de los botones "Clic para ver"
+  // Esto hace que los botones también apunten a tus archivos locales
+  document.querySelectorAll('.btn-click').forEach((btn, index) => {
+    btn.setAttribute('href', urls[index + 1]);
+    btn.setAttribute('target', '_self'); // Mejor abrir en la misma pestaña para que parezca una App
+  });
+});
+</script>
